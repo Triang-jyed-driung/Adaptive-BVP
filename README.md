@@ -134,5 +134,58 @@ The program is tested across five different examples. Run `python BVPSolver.py` 
 
 1. Bessel J function example, from the article:
 ```math
-u''+\frac{u'}{x} + \frac{x^2-100^2}{x^2} u(x) = 0 \text{ on } [0,600], \quad u(0)=0, \ \ u(600)=1
+u''+\frac{u'}{x} + \frac{x^2-100^2}{x^2} u = 0 \text{ on } [0,600], \quad u(0)=0, \ \ u(600)=1
+```
+The solution is:
+```math
+u(x) = \frac{J_{100}(x)} {J_{100}(600)}
+```
+
+2. "Base state of quantum harmonic oscillator"
+```math
+u''+ (1-x^2) u = 0 \text{ on } [-6,6], \quad u(-6)=u(6)=e^{-18}
+```
+The solution is:
+```math
+u(x) = \exp \left( - \frac{x^2}{2} \right)
+```
+This solution fails to converge because $e^{-18}$ is too small. But the shape of the solution is correct.
+
+
+3. Neumann condition test
+```math
+u''+ u = 0 \text{ on } [0,\pi], \quad u'(0)=-u'(\pi)=1
+```
+The solution is:
+```math
+u(x) = sin(x)
+```
+This is a simple example, yet it failed during my debugging process. Now it's fixed and the solution achieves machine precision.
+
+
+4. The tangent function
+```math
+u''-2uu'=0 \text{ on } \left[-\frac{\pi}{4},\frac{\pi}{4}\right], \quad u\left(\frac{\pi}{4}\right) = -u\left(-\frac{\pi}{4}\right) = 1
+```
+The solution is:
+```math
+u(x) = \tan(x)
+```
+
+5. A homogeneous nonlinear example
+```math
+u'' = \frac{u'^2}{2u} \text{ on } [-1,1], \quad u(-1)=u(1)=1
+```
+The solution is:
+```math
+u(x) = x^2
+```
+
+6. Logistic 
+```math
+u'' = u'(1-u') \text{ on } [-\ln(2),\ln(2)], \quad u'(-1)=\frac 1 3, u(1) = \ln(3)
+```
+The solution is:
+```math
+u(x) = \ln(1+exp(x))
 ```
