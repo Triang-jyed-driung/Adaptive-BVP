@@ -164,7 +164,7 @@ u''+ u = 0 \text{ on } [0,\pi], \quad u'(0)=-u'(\pi)=1
 ```
 The solution is:
 ```math
-u(x) = sin(x)
+u(x) = \sin(x)
 ```
 This is a simple example, yet it failed during my debugging process. Now it's fixed and the solution achieves machine precision.
 ![Ex3](sinx.jpg)
