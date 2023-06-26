@@ -50,9 +50,30 @@ This function returns a class `LinearBVPSolver.Node` that is directly callable. 
 - Access function value at `x`, i.e., $u(x)$, by direclty calling `u(x)`.
 - Access function derivative at `x`, i.e., $u'(x)$, by calling `u(x, deriv=True)`.
 
+Example usage:
+
+```
+from scipy.special import jv
+from matplotlib import pyplot as plt
+import numpy as np
+from BVPSolver import LinearBVPSolver
+u = LinearBVPSolver(
+    lambda x: 1/x,
+    lambda x: 1-(100/x)**2,
+    lambda x: 0,
+    0, 600,
+    1,0,0,
+    1,0,1,
+    TOL=5e-10,
+)
+x = np.linspace(0,600,600)
+plt.plot(x, [(u(xi) - jv(100,xi)/jv(100,600)) for xi in x])
+plt.title("Bessel 100 on [0,600]")
+plt.savefig("bessel.jpg")
+plt.show()
+```
+
 ## Nonlinear solver
-
-
 
 
 
