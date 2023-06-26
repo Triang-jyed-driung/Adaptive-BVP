@@ -1,4 +1,6 @@
 # Adaptive-BVP
+
+### Course Project, Numerical Analysis, Spring 2023 ###
 Implementation of the [A fast adaptive numerical method for stiff two-point boundary value problems](https://math.nyu.edu/~greengar/lee_gr_tpbvp.pdf) by June-Yub Lee and Leslie Greengard.
 
 
