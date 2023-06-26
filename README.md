@@ -21,7 +21,7 @@ This program contains 2 main functions, `LinearBVPSolver` for linear BVPs, and `
 ## Linear solver
 
 The function `LinearBVPSolver` has the following parameters:
-```
+```Python
 def LinearBVPSolver(p, q, f, a, c, zetal0, zetal1, gammal, zetar0, zetar1, gammar,
     C=4.0, TOL=1e-8, iters=40, eval_points=32, force_double=False):
 ```
@@ -75,7 +75,7 @@ plt.show()
 ## Nonlinear solver
 
 The function `NewtonNonlinearSolver` has the following parameters:
-```
+```Python
 def NewtonNonlinearSolver(
     f, f_2, f_3, a, c, zetal0, zetal1, gammal, zetar0, zetar1, gammar,
     initial=None, C=4.0, TOL=1e-6, iters=10, eval_points=32, force_double=False,
@@ -101,6 +101,8 @@ $$\zeta_{r0} u(c) + \zeta_{r1} u'(c) = \gamma_r$$.
 - `eval_points`: Same as above
 - `force_double`: Same as above
 
-
+The formula of Newton's iteration is not explicitly specified in the article. Here is the formula:
+Let $u_{n+1}(x)$ solve 
+$$u''_{n+1} -\partial_3 f(x, u_n, u'_n) u'_{n+1} -\partial_2 f(x, u_n, u'_n) u_{n+1}=f(x, u_n, u'_n) -\partial_3 f(x, u_n, u'_n) u'_n -\partial_2 f(x, u_n, u'_n) u_n$$.
 
 
