@@ -16,10 +16,19 @@ This project contains a single Python program named `BVPsolver.py`. To use the p
 import BVPsolver
 ```
 
-This program contains 2 main functions, `LinearBVPSolver()` for linear BVPs, and `NewtonNonlinearSolver()` for nonlinear BVPs.
+This program contains 2 main functions, `LinearBVPSolver` for linear BVPs, and `NewtonNonlinearSolver` for nonlinear BVPs.
 
 ## Linear solver
 
+The function `LinearBVPSolver` has the following parameters:
+```
+def LinearBVPSolver(p, q, f, a, c, zetal0, zetal1, gammal, zetar0, zetar1, gammar,
+    C=4.0, TOL=1e-8, iters=40, eval_points=32, force_double=False):
+```
+
+- `p`: A function defined on $[a,c]$ and returns a `float` number.
+- `q`: A function defined on $[a,c]$ and returns a `float` number.
+- `f`: A function defined on $[a,c]$ and returns a `float` number.
 
 
 
