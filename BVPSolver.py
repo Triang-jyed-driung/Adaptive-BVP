@@ -446,13 +446,13 @@ if __name__ == "__main__":
         lambda x: 0,
         lambda x: 1,
         lambda x: 0,
-        0, pi,
+        0, pi/2,
         0,1,1,
-        0,1,-1,
+        0,1,0,
     )
-    xs = np.linspace(0, pi, 100)
+    xs = np.linspace(0, pi/2, 100)
     plt.plot(xs, [root(xi)-sin(xi) for xi in xs])
-    plt.title("u''+u=0, u'(0)=-u'(pi)=1 (Pure Neumann)")
+    plt.title("u''+u=0,u'(0)=1,u'(pi/2)=0 (Pure Neumann)")
     plt.savefig("sinx.jpg")
     plt.show()
     
