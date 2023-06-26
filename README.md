@@ -102,7 +102,8 @@ $$\zeta_{r0} u(c) + \zeta_{r1} u'(c) = \gamma_r$$.
 - `force_double`: Same as above
 
 The formula of Newton's iteration is not explicitly specified in the article. Here is the formula:
+
 Let $u_{n+1}(x)$ solve 
-$$u''_{n+1} -\partial_3 f(x, u_n, u'_n) u'_{n+1} -\partial_2 f(x, u_n, u'_n) u_{n+1}=f(x, u_n, u'_n) -\partial_3 f(x, u_n, u'_n) u'_n -\partial_2 f(x, u_n, u'_n) u_n$$.
+$$u''_{n+1} -\partial_3 f(x, u_n, u'_n) u'_{n+1} $$.
 
 
