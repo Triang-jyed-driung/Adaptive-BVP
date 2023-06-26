@@ -66,8 +66,8 @@ u = LinearBVPSolver(
     1,0,1,
     TOL=5e-10,
 )
-x = np.linspace(0, 600, 600)
-plt.plot(x, [u(xi) for xi in x])
+xs = np.linspace(0, 600, 600)
+plt.plot(xs, [u(xi) for xi in xs])
 plt.title("Bessel 100 on [0,600]")
 plt.show()
 ```
@@ -106,4 +106,27 @@ The formula of Newton's iteration is not explicitly specified in the article. He
 Let $u_{n+1}(x)$ solve 
 ```math
 u''_{n+1} -\partial_3 f(x, u_n, u'_n) u'_{n+1} -\partial_2 f(x, u_n, u'_n) u_{n+1}=f(x, u_n, u'_n) -\partial_3 f(x, u_n, u'_n) u'_n -\partial_2 f(x, u_n, u'_n) u_n
+```
+
+Try this example:
+```Python
+from scipy.special import jv
+from matplotlib import pyplot as plt
+import numpy as np
+from BVPSolver import NewtonNonlinearSolver
+r = NewtonNonlinearSolver(
+    lambda x, u, du: 2*u*du,
+    lambda x, u, du: 2*du,
+    lambda x, u, du: 2*u,
+    -pi/4, pi/4,
+    1,0,-1,
+    1,0,1,
+    initial=(lambda x: x**2, lambda x: 2*x),
+    TOL=1e-13
+)
+xs = np.linspace(-pi/4, pi/4, 100)
+plt.plot(xs, [r(xi) for xi in xs])
+plt.title("u''=2uu', u=tanx")
+plt.savefig("tanx.jpg")
+plt.show()
 ```
