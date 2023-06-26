@@ -28,8 +28,9 @@ def LinearBVPSolver(p, q, f, a, c, zetal0, zetal1, gammal, zetar0, zetar1, gamma
 This function aims to solve the following ordinary differential equation:
 $$u''(x) + p(x) u'(x) + q(x) u(x) = f(x)$$
 with respect to boundary conditions:
-$$ \zeta_{l0} u(a) + \zeta_{l1} u'(a) = \gamma_l$$
-$$ \zeta_{r0} u(c) + \zeta_{r1} u'(c) = \gamma_r$$
+$$\zeta_{l0} u(a) + \zeta_{l1} u'(a) = \gamma_l$$
+and
+$$\zeta_{r0} u(c) + \zeta_{r1} u'(c) = \gamma_r$$.
 
 - `p`: A function defined on $[a,c]$ and returns a `float` number.
 - `q`: A function defined on $[a,c]$ and returns a `float` number.
