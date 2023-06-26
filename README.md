@@ -10,18 +10,23 @@ Implementation of the [A fast adaptive numerical method for stiff two-point boun
 - [Nonlinear Solver](#nonlinear-solver)
 - [Examples](#examples)
 - [FAQ](#faq)
+- [Advantages and defects](advantages-and-defects)
 
 ## Introduction
 This project contains a single Python program named `BVPSolver.py`. To use the program, run
 ```Python
 import BVPsolver
 ```
+or
+```Python
+from BVPsolver import LinearBVPSolver, NewtonNonlinearSolver
+```
 
 This program contains 2 main functions, `LinearBVPSolver` for linear BVPs, and `NewtonNonlinearSolver` for nonlinear BVPs.
 
 ## Linear solver
 
-The function `LinearBVPSolver` has the following parameters:
+To solve linear equations, please use `LinearBVPSolver` function. The function `LinearBVPSolver` has the following parameters:
 ```Python
 def LinearBVPSolver(p, q, f, a, c, zetal0, zetal1, gammal, zetar0, zetar1, gammar,
     C=4.0, TOL=1e-8, iters=40, eval_points=32, force_double=False):
@@ -50,6 +55,7 @@ $\zeta_{r0} u(c) + \zeta_{r1} u'(c) = \gamma_r$.
 This function returns a class `LinearBVPSolver.Node` that is directly callable. If you have already set `u = LinearBVPSolver(...)`, then you can:
 - Access function value at `x`, i.e., $u(x)$, by direclty calling `u(x)`.
 - Access function derivative at `x`, i.e., $u'(x)$, by calling `u(x, deriv=True)`.
+The function value or derivative at `x` is computed by Chebyshev interpolation, which is more accurate than linear or spline interpolation.
 
 Example usage:
 
@@ -103,6 +109,8 @@ $$\zeta_{r0} u(c) + \zeta_{r1} u'(c) = \gamma_r$$.
 - `eval_points`: Same as above
 - `force_double`: Same as above
 
+This function also returns a class `LinearBVPSolver.Node` that is callable as a function. See above for details.
+
 The formula of Newton's iteration is not explicitly specified in the article. Here is the formula:
 
 Let $u_{n+1}(x)$ solve 
@@ -110,7 +118,7 @@ Let $u_{n+1}(x)$ solve
 u''_{n+1} -\partial_3 f(x, u_n, u'_n) u'_{n+1} -\partial_2 f(x, u_n, u'_n) u_{n+1}=f(x, u_n, u'_n) -\partial_3 f(x, u_n, u'_n) u'_n -\partial_2 f(x, u_n, u'_n) u_n
 ```
 
-Try this example:
+Try this example, or see the example 5 below for details:
 ```Python
 from matplotlib import pyplot as plt
 import numpy as np
@@ -133,7 +141,7 @@ plt.show()
 ![Tangent](example_2.jpg)
 
 ## Examples
-The program is tested across five different examples. Run `python BVPSolver.py` to show all the examples.
+The program is tested across six different examples. Run `python BVPSolver.py` to show all the examples.
 
 Note: All following plots plot the difference of the computed solution and the real sulution.
 
@@ -212,5 +220,18 @@ A: We can make multiple initial guesses. However, I don't know how to solve it e
 Q: Chap 2.4 (Theorem 2.13 and 2.14) in Starr and Rokhlin discusses the case with degenerate boundary conditions. They presented one relevant example (Example 5) with degenerate BC. In that example, they constructed a transform manually, which is a bit unsatisfying. Can you deal with degenerate BCs in a black-box fashion?
 
 A: Degenerate boundary condition is heavily related to Sturm-Liouville problems. The spectrum of Sturm-Liouville problems is discrete, so only at certain specific points does the BVP with degenerate boundary conditions possess a nontrivial solution. For example, $u''=-u$, $u(0)=u(l)=0$. When $l$ is a multiple of $\pi$, then the equation has infinitely many solutions, but otherwise, it has only the zero solution.
+
+## Advantages and defects
+
+### Advantages
+
+- The solver function returns a class object which contains all the necessary information, including binary tree structure and chebyshev points, and itself is easily callable as a function.
+- Chebyshev interpolation enables higher order of accuracy.
+- A good solver (`numpy.linalg.lstsq`) that handles degenerate cases and avoids crashing.
+
+### Defects
+
+- Cannot identify unsolvable cases - While `numpy.linalg.lstsq` handles degenerate cases efficiently, it does not report unsolvable cases explicitly by raising an error. If the equation itself is unsolvable, this program might silently output an approximate "solution". Similarly, it does not explicitly handle cases where there are multiple possible solutions.
+- Possible early stop - To improve speed, the final doubling step where all intervals are splitted into halves is disabled by default. This may cause early stops. Also, random sample points are used to evaluate the tolerance `TOL`, hence it's entirely possible that all random points fall on one side of the interval, ignoring singularity on the other side.
 
 
