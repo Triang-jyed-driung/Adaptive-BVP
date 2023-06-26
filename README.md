@@ -70,6 +70,7 @@ plt.plot(xs, [u(xi) for xi in xs])
 plt.title("Bessel 100 on [0,600]")
 plt.show()
 ```
+![Bessel equation](example_1.jpg)
 
 ## Nonlinear solver
 
@@ -127,9 +128,12 @@ plt.plot(xs, [r(xi) for xi in xs])
 plt.title("u''=2uu', u=tanx")
 plt.show()
 ```
+![Tangent](example_2.jpg)
 
 ## Examples
 The program is tested across five different examples. Run `python BVPSolver.py` to show all the examples.
+
+Note: All following plots plot the difference of the computed solution and the real sulution.
 
 1. Bessel J function example, from the article:
 ```math
@@ -139,6 +143,7 @@ The solution is:
 ```math
 u(x) = \frac{J_{100}(x)} {J_{100}(600)}
 ```
+![Ex1](bessel.jpg)
 
 2. "Base state of quantum harmonic oscillator"
 ```math
@@ -149,7 +154,7 @@ The solution is:
 u(x) = \exp \left( - \frac{x^2}{2} \right)
 ```
 This solution fails to converge because $e^{-18}$ is too small. But the shape of the solution is correct.
-
+![Ex2](exp-x2.jpg)
 
 3. Neumann condition test
 ```math
@@ -160,7 +165,7 @@ The solution is:
 u(x) = sin(x)
 ```
 This is a simple example, yet it failed during my debugging process. Now it's fixed and the solution achieves machine precision.
-
+![Ex3](sinx.jpg)
 
 4. The tangent function
 ```math
@@ -170,6 +175,7 @@ The solution is:
 ```math
 u(x) = \tan(x)
 ```
+![Ex4](tanx.jpg)
 
 5. A homogeneous nonlinear example
 ```math
@@ -179,6 +185,7 @@ The solution is:
 ```math
 u(x) = x^2
 ```
+![Ex5](x^2.jpg)
 
 6. Logistic 
 ```math
@@ -188,7 +195,7 @@ The solution is:
 ```math
 u(x) = \ln(1+exp(x))
 ```
-
+![Ex6](logistic.jpg)
 
 ## FAQ
 
