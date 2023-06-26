@@ -128,3 +128,11 @@ plt.plot(xs, [r(xi) for xi in xs])
 plt.title("u''=2uu', u=tanx")
 plt.show()
 ```
+
+## Examples
+The program is tested across five different examples. Run `python BVPSolver.py` to show all the examples.
+
+1. Bessel J function example, from the article:
+```math
+u''+\frac{u'}{x} + \frac{x^2-100^2}{x^2} u(x) = 0 \text{ on } [0,600], \quad u(0)=0, \ \ u(600)=1
+```
