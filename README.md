@@ -11,7 +11,7 @@ Implementation of the [A fast adaptive numerical method for stiff two-point boun
 
 ## Introduction
 This project contains a single Python program named `BVPSolver.py`. To use the program, run
-```
+```Python
 import BVPsolver
 ```
 
