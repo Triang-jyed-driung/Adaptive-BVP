@@ -160,7 +160,7 @@ This solution fails to converge because $e^{-18}$ is too small. But the shape of
 
 3. Neumann condition test
 ```math
-u''+ u = 0 \text{ on } [0,\pi], \quad u'(0)=-u'(\pi)=1
+u''+ u = 0 \text{ on } [0,\pi/2], \quad u'(0)=1,u'(\pi/2)=0
 ```
 The solution is:
 ```math
