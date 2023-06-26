@@ -104,5 +104,6 @@ $$\zeta_{r0} u(c) + \zeta_{r1} u'(c) = \gamma_r$$.
 The formula of Newton's iteration is not explicitly specified in the article. Here is the formula:
 
 Let $u_{n+1}(x)$ solve 
-
-Let ![formula](https://latex.codecogs.com/png.latex?\dpi{150}u''_{n&plus;1}&space;-\partial_3&space;f(x,&space;u_n,&space;u'_n)&space;u'_{n&plus;1}&space;-\partial_2&space;f(x,&space;u_n,&space;u'_n)&space;u_{n&plus;1}=f(x,&space;u_n,&space;u'_n)&space;-\partial_3&space;f(x,&space;u_n,&space;u'_n)&space;u'_n&space;-\partial_2&space;f(x,&space;u_n,&space;u'_n)&space;u_n)
+```math
+u''_{n+1} -\partial_3 f(x, u_n, u'_n) u'_{n+1} -\partial_2 f(x, u_n, u'_n) u_{n+1}=f(x, u_n, u'_n) -\partial_3 f(x, u_n, u'_n) u'_n -\partial_2 f(x, u_n, u'_n) u_n
+```
