@@ -11,7 +11,7 @@ Implementation of the [A fast adaptive numerical method for stiff two-point boun
 - [Future work](#future-work)
 
 ## Introduction
-This project contains a single Python program named `BVPsolver.py`. To use the program, run
+This project contains a single Python program named `BVPSolver.py`. To use the program, run
 ```
 import BVPsolver
 ```
@@ -42,7 +42,7 @@ $$\zeta_{r0} u(c) + \zeta_{r1} u'(c) = \gamma_r$$.
 $\zeta_{r0} u(c) + \zeta_{r1} u'(c) = \gamma_r$.
 - `C`: A `float` number with the same meaning described in the article. Default to 4.0.
 - `TOL`: Error tolerance, default to 1e-8.
-- `iters`: Maximum allowed iteration to solve the equation to the given error tolerance. Default to 40.
+- `iters`: Number of allowed refinement iterations to solve the equation to the given error tolerance. Default to 40.
 - `eval_points`: This program calculates the function values at `eval_points` random points on $[a,c]$ to estimate the error. Default to 32.
 - `force_double`: The algorithm in the article contains one last doubling step, splitting every subinterval node into two to ensure that error stays within `TOL`. In my experiments, this step is usually unnecessary and doubles the execution time. Default to `False`. Switch it to `True` to force the same behavior described in the article.
 
@@ -72,8 +72,34 @@ plt.title("Bessel 100 on [0,600]")
 plt.show()
 ```
 
-
 ## Nonlinear solver
+
+The function `NewtonNonlinearSolver` has the following parameters:
+```
+def NewtonNonlinearSolver(
+    f, f_2, f_3, a, c, zetal0, zetal1, gammal, zetar0, zetar1, gammar,
+    initial=None, C=4.0, TOL=1e-6, iters=10, eval_points=32, force_double=False,
+):
+```
+This function aims to solve the following ordinary differential equation:
+$$u''(x) = f(x, u, u')$$
+with respect to boundary conditions:
+$$\zeta_{l0} u(a) + \zeta_{l1} u'(a) = \gamma_l$$
+and
+$$\zeta_{r0} u(c) + \zeta_{r1} u'(c) = \gamma_r$$.
+
+- `f`: A function that accepts 3 `float` numbers (namely `x, u, du` where `du` is $u'(x)$) and returns a `float` number.
+- `f_2`: Partial derivative of `f` with respect to the second parameter, which is $\partial_2 f$. It also accepts 3 `float` numbers (namely `x, u, du` where `du` is $u'(x)$) and returns a `float` number.
+- `f_3`: Partial derivative of `f` with respect to the third parameter, which is $\partial_3 f$. It also accepts 3 `float` numbers (namely `x, u, du` where `du` is $u'(x)$) and returns a `float` number.
+- `a`: Same as above
+- `c`: Same as above
+- `zetal0, zetal1, gammal, zetar0, zetar1, gammar`: Same as above
+- `initial`: Provide an initial guess for the Newton's method. Default to `None`. If you want to provide an initial guess, set `initial=(u0,du0)` where `u0` is the initial guess function and `du0` is its derivative.
+- `C`: Same as above
+- `TOL`: Error tolerance, default to 1e-6.
+- `iters`: Maximum number of Newton iterations to solve the equation. Default to 10.
+- `eval_points`: Same as above
+- `force_double`: Same as above
 
 
 
