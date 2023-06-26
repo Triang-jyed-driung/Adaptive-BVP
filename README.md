@@ -110,7 +110,6 @@ u''_{n+1} -\partial_3 f(x, u_n, u'_n) u'_{n+1} -\partial_2 f(x, u_n, u'_n) u_{n+
 
 Try this example:
 ```Python
-from scipy.special import jv
 from matplotlib import pyplot as plt
 import numpy as np
 from BVPSolver import NewtonNonlinearSolver
@@ -118,15 +117,14 @@ r = NewtonNonlinearSolver(
     lambda x, u, du: 2*u*du,
     lambda x, u, du: 2*du,
     lambda x, u, du: 2*u,
-    -pi/4, pi/4,
+    -np.pi/4, np.pi/4,
     1,0,-1,
     1,0,1,
     initial=(lambda x: x**2, lambda x: 2*x),
     TOL=1e-13
 )
-xs = np.linspace(-pi/4, pi/4, 100)
+xs = np.linspace(-np.pi/4, np.pi/4, 100)
 plt.plot(xs, [r(xi) for xi in xs])
 plt.title("u''=2uu', u=tanx")
-plt.savefig("tanx.jpg")
 plt.show()
 ```
