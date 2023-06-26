@@ -8,7 +8,6 @@ Implementation of the [A fast adaptive numerical method for stiff two-point boun
 - [Nonlinear Solver](#nonlinear-solver)
 - [Examples](#examples)
 - [FAQ](#faq)
-- [Future work](#future-work)
 
 ## Introduction
 This project contains a single Python program named `BVPSolver.py`. To use the program, run
@@ -183,9 +182,26 @@ u(x) = x^2
 
 6. Logistic 
 ```math
-u'' = u'(1-u') \text{ on } [-\ln(2),\ln(2)], \quad u'(-1)=\frac 1 3, u(1) = \ln(3)
+u'' = u'(1-u') \text{ on } [-\ln(2),\ln(2)], \quad u'(-1)=\frac 1 3,\ \  u(1) = \ln(3)
 ```
 The solution is:
 ```math
 u(x) = \ln(1+exp(x))
 ```
+
+
+## FAQ
+
+Q: What can be said about the (rank) structure of the matrix `A` in the computation?
+
+A: There is no definitive answer. In most cases, `A` is a full rank matrix, becaude almost all square matrices are full-rank. but the cases where `A` is degenerate are encountered. Therefore, it is generally better to use a generalized solver to solve the least-square or least-norm problem that handles degenerate case. For example, `np.linalg.lstsq` is better than `np.linalg.solve`.
+
+Q: Newton's method (in its pristine form) is very sensitive to the choice of initial guess. Do you have a method to overcome this difficulty for your two-point BVP solver? 
+
+A: We can make multiple initial guesses. However, I don't know how to solve it entirely in a black-box fashion.
+
+Q: Chap 2.4 (Theorem 2.13 and 2.14) in Starr and Rokhlin discusses the case with degenerate boundary conditions. They presented one relevant example (Example 5) with degenerate BC. In that example, they constructed a transform manually, which is a bit unsatisfying. Can you deal with degenerate BCs in a black-box fashion?
+
+A: Degenerate boundary condition is heavily related to Sturm-Liouville problems. The spectrum of Sturm-Liouville problems is discrete, so only at certain specific points does the BVP with degenerate boundary conditions possess a nontrivial solution. For example, $u''=-u$, $u(0)=u(l)=0$. When $l$ is a multiple of $\pi$, then the equation has infinitely many solutions, but otherwise, it has only the zero solution.
+
+
