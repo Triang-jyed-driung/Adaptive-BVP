@@ -37,7 +37,9 @@ $$\zeta_{r0} u(c) + \zeta_{r1} u'(c) = \gamma_r$$.
 - `f`: A function defined on $[a,c]$ and returns a `float` number.
 - `a`: A `float` number for the left boundary of the interval.
 - `c`: A `float` number for the right boundary of the interval.
-- `zetal0, zetal1, gammal, zetar0, zetar1, gammar`: `float` numbers determining the boundary conditions $ \zeta_{l0} u(a) + \zeta_{l1} u'(a) = \gamma_l$ and $ \zeta_{r0} u(c) + \zeta_{r1} u'(c) = \gamma_r$.
+- `zetal0, zetal1, gammal, zetar0, zetar1, gammar`: `float` numbers determining the boundary conditions $\zeta_{l0} u(a) + \zeta_{l1} u'(a) = \gamma_l$
+ and 
+$\zeta_{r0} u(c) + \zeta_{r1} u'(c) = \gamma_r$.
 - `C`: A `float` number with the same meaning described in the article. Default to 4.0.
 - `TOL`: Error tolerance, default to 1e-8.
 - `iters`: Maximum allowed iteration to solve the equation to the given error tolerance. Default to 40.
