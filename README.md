@@ -222,7 +222,7 @@ This is a classic example.
 ![Ex6](logistic.jpg)
 
 ## Adaptivity
-Ablation studies are conducted to demonstrate adaptivity. Here, we tested the same example as example 1 (Bessel $J_100$). We use one single interval with 2048 Chebyshev points, without adaptivity. The results:
+Ablation studies are conducted to demonstrate adaptivity. Here, we tested the same example as example 1 (Bessel $J_{100}$). We use one single interval with 2048 Chebyshev points, without adaptivity. The results:
 
 ![adap1](Nonadaptive.jpg)
 
