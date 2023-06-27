@@ -104,7 +104,7 @@ $$\zeta_{r0} u(c) + \zeta_{r1} u'(c) = \gamma_r$$.
 - `a`: Same as above
 - `c`: Same as above
 - `zetal0, zetal1, gammal, zetar0, zetar1, gammar`: Same as above
-- `initial`: Provide an initial guess for the Newton's method. Default to `None`. If you want to provide an initial guess, set `initial=(u0,du0)` where `u0` is the initial guess function and `du0` is its derivative.
+- `initial`: Provide an initial guess for the Newton's method. Default to `None`. If you want to provide an initial guess, set `initial=(u0,du0)` where `u0` is the initial guess function and `du0` is its derivative. If not specified, the program automatically chooses an initial guess, which coincides with the $u_i$ described in the article.
 - `C`: Same as above
 - `TOL`: Error tolerance, default to 1e-6.
 - `iters`: Maximum number of Newton iterations to solve the equation. Default to 10.
@@ -171,9 +171,9 @@ The solution is:
 ```math
 u(x) = \exp \left( - \frac{x^2}{2} \right)
 ```
-This solution fails to converge because $e^{-18}$ is too small. But the shape of the solution is correct.
+This is a ill-conditioned problem. This solution fails to converge because $e^{-18}$ is too small compared to $u(0) = 1$ in the true solution, so small roundoff pertubations lead to significant errors. But fortunately, the shape of the solution is correct.
 
-Note: This sover is programmed to automatically exit when there are more than 1024 intervals. Systems with a large number of intervals require significantly longer time to solve.
+Note: This sover is programmed to automatically exit when there are more than 1024 intervals. This is partly because that systems with a large number of intervals require significantly longer time to solve.
 
 The solver runs 13 iterations with 1405 subintervals, and forced to exit because there are more than 1024 intervals. The time spent is 2.289s.
 
@@ -269,7 +269,7 @@ Iteration 10, 48 intervals:
 
 ![it10](bessel_10.jpg)
 
-Iteration 17, 204 intervals, the final result, with error $1e-10$:
+Iteration 17, 204 intervals, the final result, with error about $1e-10$:
 
 ![it17](example_1.jpg)
 
@@ -299,5 +299,8 @@ A: Degenerate boundary condition is heavily related to Sturm-Liouville problems.
 
 - Cannot identify unsolvable cases - While `numpy.linalg.lstsq` handles degenerate cases efficiently, it does not report unsolvable cases explicitly by raising an error. If the equation itself is unsolvable, this program might silently output an approximate "solution". Similarly, it does not explicitly handle cases where there are multiple possible solutions.
 - Possible early stop - To improve speed, the final doubling step where all intervals are splitted into halves is disabled by default. This may cause early stops. Also, random sample points are used to evaluate the tolerance `TOL`, hence it's entirely possible that all random points fall on one side of the interval, ignoring singularity on the other side.
-- As a Python program, its speed is intrinsically slower than the same program written in compilable languages, such as C++/C/Fortran. 
+- Slower speed - As a Python program, its speed is intrinsically slower than the same program written in compilable languages, such as C++/C/Fortran. 
+
+## Conclusion
+
 
