@@ -146,7 +146,7 @@ plt.show()
 ## Examples
 The program is tested across six different examples. Run `python BVPSolver.py` to show all the examples.
 
-Note: All following plots plot the difference of the computed solution and the real sulution.
+## Note: All following 6 plots plot the difference of the computed solution and the real sulution. ##
 
 In all these experiments, we set `K = 16`, namely 16 chebyshev nodes.
 
@@ -170,6 +170,7 @@ The solution is:
 u(x) = \exp \left( - \frac{x^2}{2} \right)
 ```
 This solution fails to converge because $e^{-18}$ is too small. But the shape of the solution is correct.
+Note: This sover is programmed to automatically exit when there are more than 1024 intervals. Systems with a large number of intervals require significantly longer time to solve.
 
 ![Ex2](exp-x2.jpg)
 
@@ -284,5 +285,5 @@ A: Degenerate boundary condition is heavily related to Sturm-Liouville problems.
 
 - Cannot identify unsolvable cases - While `numpy.linalg.lstsq` handles degenerate cases efficiently, it does not report unsolvable cases explicitly by raising an error. If the equation itself is unsolvable, this program might silently output an approximate "solution". Similarly, it does not explicitly handle cases where there are multiple possible solutions.
 - Possible early stop - To improve speed, the final doubling step where all intervals are splitted into halves is disabled by default. This may cause early stops. Also, random sample points are used to evaluate the tolerance `TOL`, hence it's entirely possible that all random points fall on one side of the interval, ignoring singularity on the other side.
-
+- As a Python program, its speed is intrinsically slower than the same program written in compilable languages, such as C++/C/Fortran. 
 
