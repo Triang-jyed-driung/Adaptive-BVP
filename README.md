@@ -219,6 +219,28 @@ Ablation studies are conducted to demonstrate adaptivity. Here, we tested the sa
 
 The results showed that the difference is about $1e-7$, which is a much higher error than the adaptive version. Hence, adaptivity is important.
 
+Auto-adaptivity is also studied. the experiments with intermediate results are presented as follows:
+
+Iteration 0, 1 interval:
+![it0](bessel_0.jpg)
+
+Iteration 2, 4 intervals:
+![it2](bessel_2.jpg)
+
+Iteration 4, 8 intervals:
+![it4](bessel_4.jpg)
+
+Iteration 6, 19 intervals:
+![it6](bessel_6.jpg)
+
+Iteration 8, 35 intervals:
+![it8](bessel_8.jpg)
+
+Iteration 10, 48 intervals:
+![it10](bessel_10.jpg)
+
+Iteration 17, 204 intervals:
+![it17](example_1.jpg)
 
 ## FAQ
 
