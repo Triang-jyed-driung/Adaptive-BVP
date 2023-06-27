@@ -1,7 +1,7 @@
 # Adaptive-BVP
 
 ### Course Project, Numerical Analysis, Spring 2023 ###
-Implementation of the [A fast adaptive numerical method for stiff two-point boundary value problems](https://math.nyu.edu/~greengar/lee_gr_tpbvp.pdf) by June-Yub Lee and Leslie Greengard.
+Implementation of the [A fast adaptive numerical method for stiff two-point boundary value problems](https://math.nyu.edu/~greengar/lee_gr_tpbvp.pdf) by June-Yub Lee and Leslie Greengard. Below is a full report.
 
 
 ## Contents
@@ -9,6 +9,7 @@ Implementation of the [A fast adaptive numerical method for stiff two-point boun
 - [Linear solver](#linear-solver)
 - [Nonlinear Solver](#nonlinear-solver)
 - [Examples](#examples)
+- [Adaptivity](#adaptivity)
 - [FAQ](#faq)
 - [Advantages and defects](advantages-and-defects)
 
@@ -145,6 +146,8 @@ The program is tested across six different examples. Run `python BVPSolver.py` t
 
 Note: All following plots plot the difference of the computed solution and the real sulution.
 
+In all these experiments, we set `K = 16`, namely 16 chebyshev nodes.
+
 1. Bessel J function example, from the article:
 ```math
 u''+\frac{u'}{x} + \frac{x^2-100^2}{x^2} u = 0 \text{ on } [0,600], \quad u(0)=0, \ \ u(600)=1
@@ -185,6 +188,7 @@ The solution is:
 ```math
 u(x) = \tan(x)
 ```
+This is a simple example to test the Newton solver. It quickly achieves machine precision.
 ![Ex4](tanx.jpg)
 
 5. A homogeneous nonlinear example
@@ -195,6 +199,7 @@ The solution is:
 ```math
 u(x) = x^2
 ```
+This example is interesting because $\frac{u'^2}{2u}$ shows a singularity at $u=0$. The solver handles it correctly, but failed to reach machine precision. 
 ![Ex5](x^2.jpg)
 
 6. Logistic 
@@ -205,7 +210,15 @@ The solution is:
 ```math
 u(x) = \ln(1+exp(x))
 ```
+This is a classic example
 ![Ex6](logistic.jpg)
+
+## Adaptivity
+Ablation studies are conducted to demonstrate adaptivity. Here, we tested the same example as example 1 (Bessel $J_100$). We use one single interval with 2048 Chebyshev points, without adaptivity. The results:
+![adap1](Nonadaptive.jpg)
+
+The results showed that the difference is about $1e-7$, which is a much higher error than the adaptive version. Hence, adaptivity is important.
+
 
 ## FAQ
 
