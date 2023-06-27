@@ -159,6 +159,8 @@ The solution is:
 u(x) = \frac{J_{100}(x)} {J_{100}(600)}
 ```
 
+The program runs 18 iterations with 204 subintervals, the time spent is 0.725s.
+
 ![Ex1](bessel.jpg)
 
 2. "Base state of quantum harmonic oscillator"
@@ -170,7 +172,10 @@ The solution is:
 u(x) = \exp \left( - \frac{x^2}{2} \right)
 ```
 This solution fails to converge because $e^{-18}$ is too small. But the shape of the solution is correct.
+
 Note: This sover is programmed to automatically exit when there are more than 1024 intervals. Systems with a large number of intervals require significantly longer time to solve.
+
+The solver runs 13 iterations with 1405 subintervals, and forced to exit because there are more than 1024 intervals. The time spent is 2.289s.
 
 ![Ex2](exp-x2.jpg)
 
@@ -184,17 +189,22 @@ u(x) = \sin(x)
 ```
 This is a simple example, yet it failed during my debugging process. Now it's fixed and the solution achieves machine precision.
 
+The solver runs 2 iterations with 2 subintervals. The time spent is 0.005s, and achieves machine precision.
+
 ![Ex3](sinx.jpg)
 
 4. The tangent function
 ```math
 u''-2uu'=0 \text{ on } \left[-\frac{\pi}{4},\frac{\pi}{4}\right], \quad u\left(\frac{\pi}{4}\right) = -u\left(-\frac{\pi}{4}\right) = 1
 ```
+The initial guess: $u_0(x) = x^2$, which is not a good guess.
 The solution is:
 ```math
 u(x) = \tan(x)
 ```
 This is a simple example to test the Newton solver. It quickly achieves machine precision.
+
+The solver runs 6 iterations with 6 subintervals. The time spent is 0.280s, and achieves machine precision.
 
 ![Ex4](tanx.jpg)
 
@@ -202,11 +212,14 @@ This is a simple example to test the Newton solver. It quickly achieves machine 
 ```math
 u'' = \frac{u'^2}{2u} \text{ on } [-1,1], \quad u(-1)=u(1)=1
 ```
+The initial guess: $u_0(x) = x$, which makes up a singularity for $\frac{u'^2}{2u}$ at $x=0$.
 The solution is:
 ```math
 u(x) = x^2
 ```
-This example is interesting because $\frac{u'^2}{2u}$ shows a singularity at $u=0$. The solver handles it correctly, but failed to reach machine precision. 
+This example is interesting because although the final solution converges, $\frac{u'^2}{2u}$ shows a singularity at $u=0$. The solver handles it correctly, but failed to reach machine precision. 
+
+The Newton solver runs 6 iterations. The time spent is 2.456s. The first 2 Newton iterations are particularly long due to a singularity.
 
 ![Ex5](x^2.jpg)
 
@@ -218,8 +231,9 @@ The solution is:
 ```math
 u(x) = \ln(1+exp(x))
 ```
-This is a classic example.
+This is a classic example, to test a mixed boundary condition.
 
+The Newton solver runs 4 iterations on at most 2 intervals. The time spent is 0.046s, and the solution achieved machine precision.
 ![Ex6](logistic.jpg)
 
 ## Adaptivity
