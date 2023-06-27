@@ -16,8 +16,8 @@ Implementation of the [A fast adaptive numerical method for stiff two-point boun
 ## Introduction
 This project contains:
 - A Python program named `BVPSolver.py`, which contains two solvers.
-- A test program named `test_all.py`, which runs all examples in sequential order.
-- A specification/report in Markdown format (this file).
+- A test program named `test_all.py`, which runs all examples in sequential order. See below for all 6 examples.
+- A specification/report in Markdown format (this file). 
   
 To use the solvers, Add this line to the top of your code:
 ```Python
@@ -29,6 +29,15 @@ from BVPsolver import LinearBVPSolver, NewtonNonlinearSolver
 ```
 
 This Python program contains 2 main functions, `LinearBVPSolver` for linear BVPs, and `NewtonNonlinearSolver` for nonlinear BVPs.
+
+## This project is solely for academic purpose and is _NOT_ ready for serious scientific computing or for production use. ##
+
+Tested with:
+- Windows 10
+- Python 3.11.2
+- Numpy 1.24.2
+- Matplotlib 3.7.1
+Other versions are likely to work as well.
 
 ## Linear solver
 
