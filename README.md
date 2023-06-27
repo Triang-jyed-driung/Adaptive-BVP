@@ -1,6 +1,6 @@
 # Adaptive-BVP
 
-### Course Project, Numerical Analysis, Spring 2023 ###
+__Course Project, Numerical Analysis, Spring 2023__
 Implementation of the [A fast adaptive numerical method for stiff two-point boundary value problems](https://math.nyu.edu/~greengar/lee_gr_tpbvp.pdf) by June-Yub Lee and Leslie Greengard. Below is a full report.
 
 ## Contents
@@ -30,13 +30,14 @@ from BVPsolver import LinearBVPSolver, NewtonNonlinearSolver
 
 This Python program contains 2 main functions, `LinearBVPSolver` for linear BVPs, and `NewtonNonlinearSolver` for nonlinear BVPs.
 
-## This project is solely for academic purpose and is _NOT_ ready for serious scientific computing or for production use. ##
+__This project is solely for academic purpose and is _NOT_ ready for any serious scientific computing or for production use.__
 
 Tested with:
 - Windows 10
 - Python 3.11.2
 - Numpy 1.24.2
 - Matplotlib 3.7.1
+  
 Other versions are likely to work as well.
 
 ## Linear solver
