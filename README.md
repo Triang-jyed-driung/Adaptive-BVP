@@ -3,7 +3,6 @@
 ### Course Project, Numerical Analysis, Spring 2023 ###
 Implementation of the [A fast adaptive numerical method for stiff two-point boundary value problems](https://math.nyu.edu/~greengar/lee_gr_tpbvp.pdf) by June-Yub Lee and Leslie Greengard. Below is a full report.
 
-
 ## Contents
 - [Introduction](#introduction)
 - [Linear solver](#linear-solver)
@@ -12,6 +11,7 @@ Implementation of the [A fast adaptive numerical method for stiff two-point boun
 - [Adaptivity](#adaptivity)
 - [FAQ](#faq)
 - [Advantages and defects](advantages-and-defects)
+- [Conclusion](conclusion)
 
 ## Introduction
 This project contains a single Python program named `BVPSolver.py`. To use the program, run
@@ -120,7 +120,9 @@ Let $u_{n+1}(x)$ solve
 u''_{n+1} -\partial_3 f(x, u_n, u'_n) u'_{n+1} -\partial_2 f(x, u_n, u'_n) u_{n+1}=f(x, u_n, u'_n) -\partial_3 f(x, u_n, u'_n) u'_n -\partial_2 f(x, u_n, u'_n) u_n
 ```
 
-Try this example, or see the example 5 below for details:
+The above iteration process is repeated until the solution reached within desired error tolerance.
+
+Try this example, or see the example 4 below for details:
 ```Python
 from matplotlib import pyplot as plt
 import numpy as np
@@ -302,5 +304,6 @@ A: Degenerate boundary condition is heavily related to Sturm-Liouville problems.
 - Slower speed - As a Python program, its speed is intrinsically slower than the same program written in compilable languages, such as C++/C/Fortran. 
 
 ## Conclusion
+We have successfully developped the fast adaptive solver for second order two-point BVPs. It yields decent results, finishes in seconds in all tested cases, achieving a precision of at least 1e-8 except extreme cases, and is auto-adaptive.
 
 
