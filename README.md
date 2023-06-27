@@ -79,6 +79,7 @@ plt.plot(xs, [u(xi) for xi in xs])
 plt.title("Bessel 100 on [0,600]")
 plt.show()
 ```
+
 ![Bessel equation](example_1.jpg)
 
 ## Nonlinear solver
@@ -139,6 +140,7 @@ plt.plot(xs, [r(xi) for xi in xs])
 plt.title("u''=2uu', u=tanx")
 plt.show()
 ```
+
 ![Tangent](example_2.jpg)
 
 ## Examples
@@ -156,6 +158,7 @@ The solution is:
 ```math
 u(x) = \frac{J_{100}(x)} {J_{100}(600)}
 ```
+
 ![Ex1](bessel.jpg)
 
 2. "Base state of quantum harmonic oscillator"
@@ -167,6 +170,7 @@ The solution is:
 u(x) = \exp \left( - \frac{x^2}{2} \right)
 ```
 This solution fails to converge because $e^{-18}$ is too small. But the shape of the solution is correct.
+
 ![Ex2](exp-x2.jpg)
 
 3. Neumann condition test
@@ -178,6 +182,7 @@ The solution is:
 u(x) = \sin(x)
 ```
 This is a simple example, yet it failed during my debugging process. Now it's fixed and the solution achieves machine precision.
+
 ![Ex3](sinx.jpg)
 
 4. The tangent function
@@ -189,6 +194,7 @@ The solution is:
 u(x) = \tan(x)
 ```
 This is a simple example to test the Newton solver. It quickly achieves machine precision.
+
 ![Ex4](tanx.jpg)
 
 5. A homogeneous nonlinear example
@@ -200,6 +206,7 @@ The solution is:
 u(x) = x^2
 ```
 This example is interesting because $\frac{u'^2}{2u}$ shows a singularity at $u=0$. The solver handles it correctly, but failed to reach machine precision. 
+
 ![Ex5](x^2.jpg)
 
 6. Logistic 
@@ -210,11 +217,13 @@ The solution is:
 ```math
 u(x) = \ln(1+exp(x))
 ```
-This is a classic example
+This is a classic example.
+
 ![Ex6](logistic.jpg)
 
 ## Adaptivity
 Ablation studies are conducted to demonstrate adaptivity. Here, we tested the same example as example 1 (Bessel $J_100$). We use one single interval with 2048 Chebyshev points, without adaptivity. The results:
+
 ![adap1](Nonadaptive.jpg)
 
 The results showed that the difference is about $1e-7$, which is a much higher error than the adaptive version. Hence, adaptivity is important.
@@ -222,24 +231,31 @@ The results showed that the difference is about $1e-7$, which is a much higher e
 Auto-adaptivity is also studied. the experiments with intermediate results are presented as follows:
 
 Iteration 0, 1 interval:
+
 ![it0](bessel_0.jpg)
 
 Iteration 2, 4 intervals:
+
 ![it2](bessel_2.jpg)
 
 Iteration 4, 8 intervals:
+
 ![it4](bessel_4.jpg)
 
 Iteration 6, 19 intervals:
+
 ![it6](bessel_6.jpg)
 
 Iteration 8, 35 intervals:
+
 ![it8](bessel_8.jpg)
 
 Iteration 10, 48 intervals:
+
 ![it10](bessel_10.jpg)
 
-Iteration 17, 204 intervals:
+Iteration 17, 204 intervals, the final result, with error $1e-10$:
+
 ![it17](example_1.jpg)
 
 ## FAQ
