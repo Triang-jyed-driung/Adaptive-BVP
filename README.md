@@ -1,6 +1,10 @@
 # Adaptive-BVP
 
+
 __Course Project, Numerical Analysis, Spring 2023__
+
+基于Python的二阶常微分方程两点边值问题自适应求解器（清华大学求真书院2023年春季数值分析课程大作业）
+
 Implementation of the [A fast adaptive numerical method for stiff two-point boundary value problems](https://math.nyu.edu/~greengar/lee_gr_tpbvp.pdf) by June-Yub Lee and Leslie Greengard. Below is a full report.
 
 ## Contents
