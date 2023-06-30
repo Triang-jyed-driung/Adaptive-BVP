@@ -167,7 +167,7 @@ plt.show()
 ## Examples
 The program is tested across six different examples. Run `python test_all.py` to sequentially test all the examples below.
 
-## Note: All following 6 plots plot the difference of the computed solution and the real sulution. ##
+__Note: All following 6 plots plot the difference of the computed solution and the real sulution.__
 
 In all these experiments, we set `K = 16`, namely 16 chebyshev nodes.
 
